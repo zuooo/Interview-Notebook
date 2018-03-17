@@ -1,5 +1,6 @@
 <!-- GFM-TOC -->
-* [第二章 面试需要的基础知识](#第二章-面试需要的基础知识)
+* [前言](#前言)
+* [面试需要的基础知识](#面试需要的基础知识)
     * [2. 实现 Singleton](#2-实现-singleton)
     * [3. 数组中重复的数字](#3-数组中重复的数字)
     * [4. 二维数组中的查找](#4-二维数组中的查找)
@@ -17,7 +18,7 @@
     * [13. 机器人的运动范围](#13-机器人的运动范围)
     * [14. 剪绳子](#14-剪绳子)
     * [15. 二进制中 1 的个数](#15-二进制中-1-的个数)
-* [第三章 高质量的代码](#第三章-高质量的代码)
+* [高质量的代码](#高质量的代码)
     * [16. 数值的整数次方](#16-数值的整数次方)
     * [17. 打印从 1 到最大的 n 位数](#17-打印从-1-到最大的-n-位数)
     * [18.1 在 O(1) 时间内删除链表节点](#181-在-o1-时间内删除链表节点)
@@ -30,7 +31,7 @@
     * [24. 反转链表](#24-反转链表)
     * [25. 合并两个排序的链表](#25-合并两个排序的链表)
     * [26. 树的子结构](#26-树的子结构)
-* [第四章 解决面试题的思路](#第四章-解决面试题的思路)
+* [解决面试题的思路](#解决面试题的思路)
     * [27. 二叉树的镜像](#27-二叉树的镜像)
     * [28.1 对称的二叉树](#281-对称的二叉树)
     * [28.2 平衡二叉树](#282-平衡二叉树)
@@ -46,7 +47,7 @@
     * [36. 二叉搜索树与双向链表](#36-二叉搜索树与双向链表)
     * [37. 序列化二叉树](#37-序列化二叉树)
     * [38. 字符串的排列](#38-字符串的排列)
-* [第五章 优化时间和空间效率](#第五章-优化时间和空间效率)
+* [优化时间和空间效率](#优化时间和空间效率)
     * [39. 数组中出现次数超过一半的数字](#39-数组中出现次数超过一半的数字)
     * [40. 最小的 K 个数](#40-最小的-k-个数)
     * [41.1 数据流中的中位数](#411-数据流中的中位数)
@@ -62,7 +63,7 @@
     * [50. 第一个只出现一次的字符位置](#50-第一个只出现一次的字符位置)
     * [51. 数组中的逆序对](#51-数组中的逆序对)
     * [52. 两个链表的第一个公共结点](#52-两个链表的第一个公共结点)
-* [第六章 面试中的各项能力](#第六章-面试中的各项能力)
+* [面试中的各项能力](#面试中的各项能力)
     * [53 数字在排序数组中出现的次数](#53-数字在排序数组中出现的次数)
     * [54. 二叉搜索树的第 k 个结点](#54-二叉搜索树的第-k-个结点)
     * [55 二叉树的深度](#55-二叉树的深度)
@@ -79,17 +80,34 @@
     * [64. 求 1+2+3+...+n](#64-求-1+2+3++n)
     * [65. 不用加减乘除做加法](#65-不用加减乘除做加法)
     * [66. 构建乘积数组](#66-构建乘积数组)
-* [第七章 两个面试案例](#第七章-两个面试案例)
+* [两个面试案例](#两个面试案例)
     * [67. 把字符串转换成整数](#67-把字符串转换成整数)
     * [68. 树中两个节点的最低公共祖先](#68-树中两个节点的最低公共祖先)
 <!-- GFM-TOC -->
 
 
-# 第二章 面试需要的基础知识
+# 前言
+
+**变量命名规范** 
+
+- nums 表示数组，matrix 表示矩阵；
+- n 表示数组长度、字符串长度、树节点个数，以及其它具有一维性质的数据结构的元素个数；
+- m, n 表示矩阵的行数和列数；
+- first, last 表示闭区间：[first, last]；
+- begin, end 表示左闭右开区间：[begin, end)；
+- l, h 表示二分查找的闭区间：[l, h]；
+- ret 表示结果相关的变量；
+- dp 表示动态规划保存子问题的数组；
+
+**复杂度简写说明** 
+
+O(nlog<sub>n</sub>) + O(n<sup>2</sup>)，第一个指时间复杂度，第二个指空间复杂度。
+
+# 面试需要的基础知识
 
 ## 2. 实现 Singleton
 
-[单例模式](https://github.com/CyC2018/Interview-Notebook/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E5%8D%95%E4%BB%B6%E6%A8%A1%E5%BC%8F)
+[单例模式](https://github.com/CyC2018/Interview-Notebook/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F)
 
 ## 3. 数组中重复的数字
 
@@ -101,23 +119,38 @@
 
 这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素放到第 i 个位置上。
 
+以 (2, 3, 1, 0, 2, 5) 为例，以下代码的运行过程为：
+
+```html
+position-0 : (2,3,1,0,2,5) // 2 <-> 1
+             (1,3,2,0,2,5) // 1 <-> 2
+             (3,1,1,0,2,5) // 3 <-> 0
+             (0,1,1,3,2,5) // already in position
+position-1 : (0,1,1,3,2,5) // already in position
+position-2 : (0,1,1,3,2,5) // nums[i] == nums[nums[i]], exit
+```
+
+遍历到位置 2 时，该位置上的数为 1，但是第 1 个位置上已经有一个 1 的值了，因此可以知道 1 重复。
+
+复杂度：O(n) + O(1)
+
 ```java
-public boolean duplicate(int[] numbers, int length, int[] duplication) {
-    if(numbers == null || length <= 0) return false;
+public boolean duplicate(int[] nums, int length, int[] duplication) {
+    if (nums == null || length <= 0) return false;
     for (int i = 0; i < length; i++) {
-        while (numbers[i] != i && numbers[i] != numbers[numbers[i]]) {
-            swap(numbers, i, numbers[i]);
+        while (nums[i] != i && nums[i] != nums[nums[i]]) {
+            swap(nums, i, nums[i]);
         }
-        if (numbers[i] != i && numbers[i] == numbers[numbers[i]]) {
-            duplication[0] = numbers[i];
+        if (nums[i] != i && nums[i] == nums[nums[i]]) {
+            duplication[0] = nums[i];
             return true;
         }
     }
     return false;
 }
 
-private void swap(int[] numbers, int i, int j) {
-    int t = numbers[i]; numbers[i] = numbers[j]; numbers[j] = t;
+private void swap(int[] nums, int i, int j) {
+    int t = nums[i]; nums[i] = nums[j]; nums[j] = t;
 }
 ```
 
@@ -128,26 +161,34 @@ private void swap(int[] numbers, int i, int j) {
 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
 
 ```html
+Consider the following matrix:
 [
-   [ 1,  5,  9],
-   [10, 11, 13],
-   [12, 13, 15]
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
 ]
+
+Given target = 5, return true.
+Given target = 20, return false.
 ```
 
 **解题思路** 
 
 从右上角开始查找。因为矩阵中的一个数，它左边的数都比它来的小，下边的数都比它来的大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来改变行和列的下标，从而缩小查找区间。
 
+复杂度：O(m + n) + O(1)
+
 ```java
-public boolean Find(int target, int [][] array) {
-    if (array == null || array.length == 0 || array[0].length == 0) return false;
-    int m = array.length, n = array[0].length;
-    int row = 0, col = n - 1;
-    while (row < m && col >= 0) {
-        if (target == array[row][col]) return true;
-        else if (target < array[row][col]) col--;
-        else row++;
+public boolean Find(int target, int[][] matrix) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return false;
+    int m = matrix.length, n = matrix[0].length;
+    int r = 0, c = n - 1; // 从右上角开始
+    while (r <= m - 1 && c >= 0) {
+        if (target == matrix[r][c]) return true;
+        else if (target > matrix[r][c]) r++;
+        else c--;
     }
     return false;
 }
@@ -159,33 +200,37 @@ public boolean Find(int target, int [][] array) {
 
 请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为 We Are Happy. 则经过替换之后的字符串为 We%20Are%20Happy。
 
-**题目要求** 
-
-以 O(1) 的空间复杂度和 O(n) 的时间复杂度来求解。
-
 **解题思路** 
 
-从后向前改变字符串。
+现在字符串尾部填充任意字符，使得字符串的长度等于将字符串替换之后的长度。因为一个空格要替换成三个字符（%20），因此当遍历到一个空格时，需要在尾部填充两个任意字符。
+
+令 P1 指向字符串原来的末尾位置，P2 指向字符串现在的末尾位置。P1 从后向前遍历，当遍历到一个空格时，就需要令 P2 指向的位置填充 02%（注意是逆序的），否则就填充上 P1 指向字符的值。
+
+从后向前遍历时为了在改变 P2 所指向的内容时，不会影响到 P1 遍历原来字符串的内容。
+
+复杂度：O(n) + O(1)
+
+<div align="center"> <img src="../pics//35b0caf8-6f34-49db-93ed-d505e9eb3d99.png"/> </div><br>
 
 ```java
 public String replaceSpace(StringBuffer str) {
-    int n = str.length();
-    for (int i = 0; i < n; i++) {
+    int oldLen = str.length();
+    for (int i = 0; i < oldLen; i++) {
         if (str.charAt(i) == ' ') {
-            str.append("  "); // 尾部填充两个
+            str.append("  ");
         }
     }
-    int idxOfOriginal = n - 1;
+    int idxOfOld = oldLen - 1;
     int idxOfNew = str.length() - 1;
-    while (idxOfOriginal >= 0 && idxOfNew > idxOfOriginal) {
-        if (str.charAt(idxOfOriginal) == ' ') {
+    while (idxOfOld >= 0 && idxOfNew > idxOfOld) {
+        char c = str.charAt(idxOfOld--);
+        if (c == ' ') {
             str.setCharAt(idxOfNew--, '0');
             str.setCharAt(idxOfNew--, '2');
             str.setCharAt(idxOfNew--, '%');
         } else {
-            str.setCharAt(idxOfNew--, str.charAt(idxOfOriginal));
+            str.setCharAt(idxOfNew--, c);
         }
-        idxOfOriginal--;
     }
     return str.toString();
 }
@@ -249,14 +294,15 @@ public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
 
 ```java
 public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-    ListNode head = new ListNode(-1); // 头结点
-    ListNode cur = listNode;
-    while (cur != null) {
-        ListNode next = cur.next;
-        cur.next = head.next;
-        head.next = cur;
-        cur = next;
+    // 头插法构建逆序链表
+    ListNode head = new ListNode(-1);
+    while (listNode != null) {
+        ListNode memo = listNode.next;
+        listNode.next = head.next;
+        head.next = listNode;
+        listNode = memo;
     }
+    // 构建 ArrayList
     ArrayList<Integer> ret = new ArrayList<>();
     head = head.next;
     while (head != null) {
@@ -273,8 +319,32 @@ public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
 
 根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。
 
+```html
+For example, given
+
+preorder = [3,9,20,15,7]
+inorder =  [9,3,15,20,7]
+
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+**解题思路** 
+
+前序遍历的第一个值为树根节点的值，使用这个值将中序遍历结果分成两部分，左部分为树的左子树中序遍历结果，右部分为树的右子树中序遍历的结果。
+
 ```java
+private Map<Integer, Integer> inOrderNumsIdx = new HashMap<>(); // 缓存中序遍历数组的每个值对应的索引
+
 public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
+    for (int i = 0; i < in.length; i++) {
+        inOrderNumsIdx.put(in[i], i);
+    }
     return reConstructBinaryTree(pre, 0, pre.length - 1, in, 0, in.length - 1);
 }
 
@@ -282,9 +352,8 @@ private TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int[] in, 
     if (preL == preR) return new TreeNode(pre[preL]);
     if (preL > preR || inL > inR) return null;
     TreeNode root = new TreeNode(pre[preL]);
-    int midIdx = inL;
-    while (midIdx <= inR && in[midIdx] != root.val) midIdx++;
-    int leftTreeSize = midIdx - inL;
+    int inIdx = inOrderNumsIdx.get(root.val);
+    int leftTreeSize = inIdx - inL;
     root.left = reConstructBinaryTree(pre, preL + 1, preL + leftTreeSize, in, inL, inL + leftTreeSize - 1);
     root.right = reConstructBinaryTree(pre, preL + leftTreeSize + 1, preR, in, inL + leftTreeSize + 1, inR);
     return root;
@@ -300,23 +369,37 @@ private TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int[] in, 
 **解题思路** 
 
 - 如果一个节点有右子树不为空，那么该节点的下一个节点是右子树的最左节点；
+
+<div align="center"> <img src="../pics//931e112e-97d3-4a47-ac64-a86d70844e58.png" width="200"/> </div><br>
+
 - 否则，向上找第一个左链接指向的树包含该节点的祖先节点。
 
-<div align="center"> <img src="../pics//6fec7f56-a685-4232-b03e-c92a8dfba486.png"/> </div><br>
+<div align="center"> <img src="../pics//350048d6-20f5-4ca9-8452-3957a09ef3af.png" width="200"/> </div><br>
+
+```java
+public class TreeLinkNode {
+    int val;
+    TreeLinkNode left = null;
+    TreeLinkNode right = null;
+    TreeLinkNode next = null;
+
+    TreeLinkNode(int val) {
+        this.val = val;
+    }
+}
+```
 
 ```java
 public TreeLinkNode GetNext(TreeLinkNode pNode) {
-    if (pNode == null) return null;
     if (pNode.right != null) {
-        pNode = pNode.right;
-        while (pNode.left != null) pNode = pNode.left;
-        return pNode;
+        TreeLinkNode node = pNode.right;
+        while (node.left != null) node = node.left;
+        return node;
     } else {
-        TreeLinkNode parent = pNode.next;
-        while (parent != null) {
+        while (pNode.next != null) {
+            TreeLinkNode parent = pNode.next;
             if (parent.left == pNode) return parent;
             pNode = pNode.next;
-            parent = pNode.next;
         }
     }
     return null;
@@ -327,7 +410,7 @@ public TreeLinkNode GetNext(TreeLinkNode pNode) {
 
 **解题思路** 
 
-使用两个栈，in 栈用来处理 push 操作，out 栈用来处理 pop 操作。一个元素进过 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 pop 栈才能出栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，也就是先进先出，这就是队列的顺序。
+in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。一个元素进入 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，此时先进入的元素先退出，这就是队列的顺序。
 
 ```java
 Stack<Integer> in = new Stack<Integer>();
@@ -353,6 +436,16 @@ public int pop() {
 
 以 O(1) 的时间复杂度求菲波那切数列。
 
+<div align="center"><img src="https://latex.codecogs.com/gif.latex?f(n)=\left\{\begin{array}{rcl}0&&{n=0}\\1&&{n=1}\\f(n-1)+f(n-2)&&{n>1}\end{array}\right."/></div> <br>
+
+**解题思路** 
+
+如果使用递归求解，那么会重复计算一些子问题。例如，求 f(10) 需要计算 f(9) 和 f(8)，计算 f(9) 需要计算 f(8) 和 f(7)，可以看到 f(8) 被重复计算了。
+
+<div align="center"> <img src="../pics//080f488c-75ef-49a8-a49d-78fa372ad422.png"/> </div><br>
+
+递归方法是将一个问题划分成多个子问题求解，动态规划也是如此，但是动态规划会把子问题的解缓存起来，避免重复求解子问题。
+
 ```java
 public class Solution {
     private int[] fib = new int[40];
@@ -376,15 +469,15 @@ public class Solution {
 一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
 
 ```java
-public int JumpFloor(int target) {
-    if (target == 1) return 1;
-    int[] dp = new int[target];
+public int JumpFloor(int n) {
+    if (n == 1) return 1;
+    int[] dp = new int[n];
     dp[0] = 1;
     dp[1] = 2;
-    for (int i = 2; i < dp.length; i++) {
+    for (int i = 2; i < n; i++) {
         dp[i] = dp[i - 1] + dp[i - 2];
     }
-    return dp[target - 1];
+    return dp[n - 1];
 }
 ```
 
@@ -395,15 +488,15 @@ public int JumpFloor(int target) {
 一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级……它也可以跳上 n 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
 
 ```java
-public int JumpFloorII(int target) {
-    int[] dp = new int[target];
+public int JumpFloorII(int n) {
+    int[] dp = new int[n];
     Arrays.fill(dp, 1);
-    for (int i = 1; i < target; i++) {
-        for (int j = 0; j < i; j++) {
+    for(int i = 1; i < n; i++) {
+        for(int j = 0; j < i; j++) {
             dp[i] += dp[j];
         }
     }
-    return dp[target - 1];
+    return dp[n - 1];
 }
 ```
 
@@ -414,9 +507,15 @@ public int JumpFloorII(int target) {
 我们可以用 2\*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2\*1 的小矩形无重叠地覆盖一个 2\*n 的大矩形，总共有多少种方法？
 
 ```java
-public int RectCover(int target) {
-    if (target <= 2) return target;
-    return RectCover(target - 1) + RectCover(target - 2);
+public int RectCover(int n) {
+    if (n < 2) return n;
+    int[] dp = new int[n];
+    dp[0] = 1;
+    dp[1] = 2;
+    for (int i = 2; i < n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n - 1];
 }
 ```
 
@@ -601,7 +700,7 @@ public int NumberOf1(int n) {
 }
 ```
 
-# 第三章 高质量的代码
+# 高质量的代码
 
 ## 16. 数值的整数次方
 
@@ -945,7 +1044,7 @@ private boolean isSubtree(TreeNode root1, TreeNode root2) {
 }
 ```
 
-# 第四章 解决面试题的思路
+# 解决面试题的思路
 
 ## 27. 二叉树的镜像
 
@@ -1406,7 +1505,7 @@ private void backtracking(char[] chars, boolean[] hasUsed, StringBuffer s) {
 }
 ```
 
-# 第五章 优化时间和空间效率
+# 优化时间和空间效率
 
 ## 39. 数组中出现次数超过一半的数字
 
@@ -1887,7 +1986,7 @@ public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
 }
 ```
 
-# 第六章 面试中的各项能力
+# 面试中的各项能力
 
 ## 53 数字在排序数组中出现的次数
 
@@ -2310,7 +2409,7 @@ public int[] multiply(int[] A) {
 }
 ```
 
-# 第七章 两个面试案例
+# 两个面试案例
 
 ## 67. 把字符串转换成整数
 
