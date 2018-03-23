@@ -1,13 +1,10 @@
-
-<!-- <br>
-<div align="center"> 
-    <img src="https://github.com/CyC2018/InterviewNotes/blob/master/other/handbook.png" alt="" width="175"/>
-    <img src="https://img.shields.io/badge/update-today-blue.svg"/> <img src="https://img.shields.io/badge/gitbook-making-yellow.svg"/>
-</div>
-<br> -->
+ 
+![](https://img.shields.io/badge/update-today-blue.svg) ![](https://img.shields.io/badge/gitbook-making-lightgrey.svg)</br></br> 
 
 
-![](https://img.shields.io/badge/update-today-blue.svg) ![](https://img.shields.io/badge/gitbook-making-lightgrey.svg) 
+| Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ | Ⅷ | Ⅸ | Ⅹ | Ⅺ |
+| :--------: | :---------: | :---------: | :---------: | :---------: | :---------:| :---------: | :-------: | :-------:| :------:| :-------:|
+|网络[:cloud:](#网络-cloud) |操作系统[:computer:](#操作系统-computer)| 算法[:pencil2:](#数据结构与算法-pencil2)| 面向对象[:couple:](#面向对象-couple) |数据库[:floppy_disk:](#数据库-floppy_disk)| Java [:coffee:](#java-coffee)| 分布式[:sweat_drops:](#分布式-sweat_drops)| 工具[:hammer:](#工具-hammer)| 编码实践[:speak_no_evil:](#编码实践-speak_no_evil)| 资料下载[:arrow_down:](#资料下载-arrow_down)| 后记[:memo:](#后记-memo) |
 
 ## 网络 :cloud:
 
@@ -33,7 +30,7 @@
 
 > [算法](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/算法.md)
 
-整理自《算法 第四版》，主要整理了面试常问的排序和查找算法。
+整理自《算法 第四版》
 
 > [剑指 Offer 题解](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/剑指%20offer%20题解.md)
 
@@ -51,7 +48,7 @@
 
 > [面向对象思想](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/面向对象思想.md)
 
-一些面向对象思想和原则。
+一些面向对象思想和设计原则。
 
 ## 数据库 :floppy_disk:
 
@@ -65,7 +62,7 @@
 
 > [MySQL](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/MySQL.md)
 
-整理自《高性能 MySQL》，整理了一些重点内容。
+整理自《高性能 MySQL》
 
 > [Redis](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/Redis.md)
 
@@ -73,9 +70,9 @@
 
 ## Java :coffee:
 
-> [JVM](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/JVM.md)
+> [Java 虚拟机](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/Java%20虚拟机.md)
 
-整理自《深入理解 Java 虚拟机》，主要整理了内存模型、垃圾回收以及类加载机制。
+整理自《深入理解 Java 虚拟机》
 
 > [Java 并发](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/Java%20并发.md)
 
@@ -85,7 +82,7 @@
 
 容器的一些总结，包含容器源码的分析。
 
-> [Java IO](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/Java%20IO.md)
+> [Java I/O](https://github.com/CyC2018/InnterviewNotes/blob/master/notes/Java%20IO.md)
 
 File, InputStream OutputStream, Reader Writer, Serializable, Socket, NIO
 
@@ -145,7 +142,7 @@ Google 开源项目的代码风格规范。
 
 （一）关于仓库
 
-本仓库是笔者在准备 2018 年春招实习过程中的学习总结，内容以计算机书籍的学习笔记为主，在整理重点知识的同时会尽量保证知识的系统性。
+本仓库是笔者在准备 2018 年春招实习过程中的学习总结，内容以计算机书籍的学习笔记为主，在整理重点知识的同时会尽量保证知识的系统性。 
 
 （二）关于上传
 
@@ -155,7 +152,7 @@ Google 开源项目的代码风格规范。
 
 （三）关于排版
 
-笔记内容按照 [中文文案排版指北](http://mazhuang.org/wiki/chinese-copywriting-guidelines/#%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%9C%B0%E9%81%93%E7%9A%84%E7%BC%A9%E5%86%99) 进行排版，以保证内容的可读性。这里提供了笔者实现的中英混排文档排版工具的下载：[Text-Typesetting](https://github.com/CyC2018/Markdown-Typesetting)，目前实现了加空格的功能，只能以命令行的方式运行。之后打算实现对英文专有名词提示首字母大写的功能，并做一个用户界面。
+笔记内容按照 [中文文案排版指北](http://mazhuang.org/wiki/chinese-copywriting-guidelines/#%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%9C%B0%E9%81%93%E7%9A%84%E7%BC%A9%E5%86%99) 进行排版，以保证内容的可读性。这里提供了笔者实现的中英混排文档在线工具：[Text-Typesetting](https://github.com/CyC2018/Markdown-Typesetting)，目前实现了加空格的功能，之后打算实现对英文专有名词提示首字母大写的功能。
 
 不使用 `![]()` 这种方式来引用图片的原因是为了能够控制图片以合适的大小显示，并且在 GFM 中无法使用 `<center> ![]() </center>` 让图片居中显示，只能使用 `<div align="center"> <img src=""/> </div>` 达到此目的。
 
@@ -169,7 +166,7 @@ Google 开源项目的代码风格规范。
 
 （五）关于转载
 
-本仓库内容使用到的资料都会在最后面的参考资料中给出引用链接，希望您在使用本仓库的内容时也能给出相应的引用链接，毕竟毕竟写了很长时间没那么轻松~
+本仓库内容使用到的资料都会在最后面的参考资料中给出引用链接，希望您在使用本仓库的内容时也能给出相应的引用链接。
 
 <!-- ## Donate
 
