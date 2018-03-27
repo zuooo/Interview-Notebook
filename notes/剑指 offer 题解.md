@@ -30,8 +30,7 @@
 * [25. 合并两个排序的链表](#25-合并两个排序的链表)
 * [26. 树的子结构](#26-树的子结构)
 * [27. 二叉树的镜像](#27-二叉树的镜像)
-* [28.1 对称的二叉树](#281-对称的二叉树)
-* [28.2 平衡二叉树](#282-平衡二叉树)
+* [28 对称的二叉树](#28-对称的二叉树)
 * [29. 顺时针打印矩阵](#29-顺时针打印矩阵)
 * [30. 包含 min 函数的栈](#30-包含-min-函数的栈)
 * [31. 栈的压入、弹出序列](#31-栈的压入弹出序列)
@@ -60,8 +59,9 @@
 * [51. 数组中的逆序对](#51-数组中的逆序对)
 * [52. 两个链表的第一个公共结点](#52-两个链表的第一个公共结点)
 * [53 数字在排序数组中出现的次数](#53-数字在排序数组中出现的次数)
-* [54. 二叉搜索树的第 k 个结点](#54-二叉搜索树的第-k-个结点)
-* [55 二叉树的深度](#55-二叉树的深度)
+* [54. 二叉搜索树的第 K 个结点](#54-二叉搜索树的第-k-个结点)
+* [55.1 二叉树的深度](#551-二叉树的深度)
+* [55.2 平衡二叉树](#552-平衡二叉树)
 * [56. 数组中只出现一次的数字](#56-数组中只出现一次的数字)
 * [57.1 和为 S 的两个数字](#571-和为-s-的两个数字)
 * [57.2 和为 S 的连续正数序列](#572-和为-s-的连续正数序列)
@@ -544,7 +544,7 @@ private int minNumberInRotateArray(int[] nums, int first, int last) {
 }
 ```
 
-### 双指针
+### 二分查找
 
 复杂度：O(log<sub>n</sub>) + O(1)
 
@@ -556,7 +556,7 @@ public int minNumberInRotateArray(int[] nums) {
         if (h - l == 1) return nums[h];
         int mid = l + (h - l) / 2;
         if (nums[mid] >= nums[l]) l = mid;
-        else if (nums[mid] <= nums[h]) h = mid;
+        else h = mid;
     }
     return nums[l];
 }
@@ -694,7 +694,7 @@ public int maxProductAfterCutting(int n) {
 
 ### 贪心解法
 
-尽可能多得剪长度为 3 的绳子，并且不允许有长度为 1 的绳子出现，如果出现了，就从已经切好长度为 3 的绳子中拿出一段与长度为 1 的绳子重新组合，把它们切成两段长度为 2 的绳子。
+尽可能多剪长度为 3 的绳子，并且不允许有长度为 1 的绳子出现，如果出现了，就从已经切好长度为 3 的绳子中拿出一段与长度为 1 的绳子重新组合，把它们切成两段长度为 2 的绳子。
 
 证明：当 n >= 5 时，3(n - 3) - 2(n - 2) = n - 5 >= 0。因此把长度大于 5 的绳子切成两段，令其中一段长度为 3 可以使得两段的乘积最大。
 
@@ -726,7 +726,7 @@ public int NumberOf1(int n) {
 
 ### n&(n-1)
 
-O(logM) 时间复杂度解法，其中 m 表示 1 的个数。
+O(logM) 时间复杂度解法，其中 M 表示 1 的个数。
 
 该位运算是去除 n 的位级表示中最低的那一位。
 
@@ -772,7 +772,7 @@ public double Power(double base, int exponent) {
     }
     double pow = Power(base * base, exponent / 2);
     if (exponent % 2 != 0) pow = pow * base;
-    return isNegative ? 1 / pow : pow;
+    return isNegative ? (1 / pow) : pow;
 }
 ```
 
@@ -804,6 +804,13 @@ private void print1ToMaxOfNDigits(char[] number, int digit) {
         number[digit + 1] = (char) (i + '0');
         print1ToMaxOfNDigits(number, digit + 1);
     }
+}
+
+private void printNumber(char[] number) {
+    int index = 0;
+    while (index < number.length && number[index] == '0') index++;
+    while (index < number.length) System.out.print(number[index++]);
+    System.out.println();
 }
 ```
 
@@ -871,7 +878,7 @@ public ListNode deleteDuplication(ListNode pHead) {
 
 ## 解题思路
 
-应该注意到，'.' 是用来代替一个任意字符，而 '\*' 是用来重复前面的字符。这两个的作用不同，不能把 '.' 的作用和 '\*' 进行类比，从而它当成重复前面字符一次。
+应该注意到，'.' 是用来代替一个任意字符，而 '\*' 是用来重复前面的字符。这两个的作用不同，不能把 '.' 的作用和 '\*' 进行类比，从而把它当成重复前面字符一次。
 
 ```html
 p.charAt(j) == s.charAt(i)  :  dp[i][j] = dp[i-1][j-1];
@@ -1147,7 +1154,7 @@ private void swap(TreeNode root) {
 }
 ```
 
-# 28.1 对称的二叉树
+# 28 对称的二叉树
 
 ## 题目描述
 
@@ -1172,39 +1179,6 @@ boolean isSymmetrical(TreeNode t1, TreeNode t2) {
     if (t1 == null || t2 == null) return false;
     if (t1.val != t2.val) return false;
     return isSymmetrical(t1.left, t2.right) && isSymmetrical(t1.right, t2.left);
-}
-```
-
-# 28.2 平衡二叉树
-
-## 题目描述
-
-```html
-    3
-   / \
-  9  20
-    /  \
-   15   7
-```
-
-平衡二叉树左右子树高度差不超过 1。
-
-## 解题思路
-
-```java
-private boolean isBalanced = true;
-
-public boolean IsBalanced_Solution(TreeNode root) {
-    height(root);
-    return isBalanced;
-}
-
-private int height(TreeNode root) {
-    if (root == null) return 0;
-    int left = height(root.left);
-    int right = height(root.right);
-    if (Math.abs(left - right) > 1) isBalanced = false;
-    return 1 + Math.max(left, right);
 }
 ```
 
@@ -2027,11 +2001,31 @@ public int GetUglyNumber_Solution(int N) {
 
 ## 解题思路
 
+最直观的解法是使用 HashMap 对出现次数进行统计，但是考虑到要统计的字符范围有限，因此可以使用整型数组代替 HashMap。
+
 ```java
 public int FirstNotRepeatingChar(String str) {
     int[] cnts = new int[256];
     for (int i = 0; i < str.length(); i++) cnts[str.charAt(i)]++;
     for (int i = 0; i < str.length(); i++) if (cnts[str.charAt(i)] == 1) return i;
+    return -1;
+}
+```
+
+以上的空间复杂度还不是最优的。考虑到只需要找到只出现一次的字符，那么我们只需要统计的次数信息只有 0,1,更大，那么使用两个比特位就能存储这些信息。
+
+```java
+public int FirstNotRepeatingChar(String str) {
+    BitSet bs1 = new BitSet(256);
+    BitSet bs2 = new BitSet(256);
+    for (char c : str.toCharArray()) {
+        if (!bs1.get(c) && !bs2.get(c)) bs1.set(c);     // 0 0
+        else if (bs1.get(c) && !bs2.get(c)) bs2.set(c); // 0 1
+    }
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        if (bs1.get(c) && !bs2.get(c)) return i;
+    }
     return -1;
 }
 ```
@@ -2070,7 +2064,7 @@ private void merge(int[] nums, int first, int mid, int last) {
         else if (nums[i] < nums[j]) tmp[k] = nums[i++];
         else {
             tmp[k] = nums[j++];
-            this.cnt += mid - i + 1; // a[i] > a[j]，说明 a[i...mid] 都大于 a[j]
+            this.cnt += mid - i + 1; // nums[i] > nums[j]，说明 nums[i...mid] 都大于 nums[j]
         }
         k++;
     }
@@ -2096,7 +2090,7 @@ B:    b1 → b2 → b3
 
 设 A 的长度为 a + c，B 的长度为 b + c，其中 c 为尾部公共部分长度，可知 a + c + b = b + c + a。
 
-当访问 A 链表的指针访问到链表尾部时，令它从链表 B 的头部开始访问链表 B；同样地，当访问 B 链表的指针访问到链表尾部时，令它从链表 A 的头部开始访问链表 A。这样就能控制访问 A 和 B 两个链表的指针能同时访问到交点。
+当访问 A 链表的指针访问到链表尾部时，令它从链表 B 的头部重新开始访问链表 B；同样地，当访问 B 链表的指针访问到链表尾部时，令它从链表 A 的头部重新开始访问链表 A。这样就能控制访问 A 和 B 两个链表的指针能同时访问到交点。
 
 ```java
 public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
@@ -2155,7 +2149,7 @@ private int getLastK(int[] nums, int K) {
 }
 ```
 
-# 54. 二叉搜索树的第 k 个结点
+# 54. 二叉搜索树的第 K 个结点
 
 ## 解题思路
 
@@ -2180,7 +2174,13 @@ private void inOrder(TreeNode root, int k) {
 }
 ```
 
-# 55 二叉树的深度
+# 55.1 二叉树的深度
+
+## 题目描述
+
+从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
+
+## 解题思路
 
 ```java
 public int TreeDepth(TreeNode root) {
@@ -2188,6 +2188,40 @@ public int TreeDepth(TreeNode root) {
     return 1 + Math.max(TreeDepth(root.left), TreeDepth(root.right));
 }
 ```
+
+# 55.2 平衡二叉树
+
+## 题目描述
+
+```html
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+平衡二叉树左右子树高度差不超过 1。
+
+## 解题思路
+
+```java
+private boolean isBalanced = true;
+
+public boolean IsBalanced_Solution(TreeNode root) {
+    height(root);
+    return isBalanced;
+}
+
+private int height(TreeNode root) {
+    if (root == null) return 0;
+    int left = height(root.left);
+    int right = height(root.right);
+    if (Math.abs(left - right) > 1) isBalanced = false;
+    return 1 + Math.max(left, right);
+}
+```
+
 
 # 56. 数组中只出现一次的数字
 
@@ -2220,7 +2254,7 @@ public void FindNumsAppearOnce(int[] array, int num1[], int num2[]) {
 
 ## 题目描述
 
-输入一个递增排序的数组和一个数字 S，在数组中查找两个数，是的他们的和正好是 S，如果有多对数字的和等于 S，输出两个数的乘积最小的。
+输入一个递增排序的数组和一个数字 S，在数组中查找两个数，使得他们的和正好是 S，如果有多对数字的和等于 S，输出两个数的乘积最小的。
 
 ## 解题思路
 
@@ -2252,26 +2286,25 @@ public ArrayList<Integer> FindNumbersWithSum(int[] array, int sum) {
 ```java
 public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
     ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
-    int start = 1, end = 2;
-    int mid = sum / 2;
+    int first = 1, last = 2;
     int curSum = 3;
-    while (start <= mid && end < sum) {
+    while (first <= sum / 2 && last < sum) {
         if (curSum > sum) {
-            curSum -= start;
-            start++;
+            curSum -= first;
+            first++;
         } else if (curSum < sum) {
-            end++;
-            curSum += end;
+            last++;
+            curSum += last;
         } else {
             ArrayList<Integer> list = new ArrayList<>();
-            for (int i = start; i <= end; i++) {
+            for (int i = first; i <= last; i++) {
                 list.add(i);
             }
             ret.add(list);
-            curSum -= start;
-            start++;
-            end++;
-            curSum += end;
+            curSum -= first;
+            first++;
+            last++;
+            curSum += last;
         }
     }
     return ret;
@@ -2295,25 +2328,22 @@ public String ReverseSentence(String str) {
     if (str.length() == 0) return str;
     int n = str.length();
     char[] chars = str.toCharArray();
-    int start = 0, end = 0;
-    while (end <= n) {
-        if (end == n || chars[end] == ' ') {
-            reverse(chars, start, end - 1);
-            start = end + 1;
+    int i = 0, j = 0;
+    while (j <= n) {
+        if (j == n || chars[j] == ' ') {
+            reverse(chars, i, j - 1);
+            i = j + 1;
         }
-        end++;
+        j++;
     }
     reverse(chars, 0, n - 1);
     return new String(chars);
 }
 
-private void reverse(char[] c, int start, int end) {
-    while (start < end) {
-        char t = c[start];
-        c[start] = c[end];
-        c[end] = t;
-        start++;
-        end--;
+private void reverse(char[] c, int i, int j) {
+    while(i < j) {
+        char t = c[i]; c[i] = c[j]; c[j] = t;
+        i++; j--;
     }
 }
 ```
@@ -2327,22 +2357,19 @@ private void reverse(char[] c, int start, int end) {
 ## 解题思路
 
 ```java
-public String LeftRotateString(String str, int k) {
-    if (str.length() == 0) return "";
+public String LeftRotateString(String str,int n) {
+    if(str.length() == 0) return "";
     char[] c = str.toCharArray();
-    reverse(c, 0, k - 1);
-    reverse(c, k, c.length - 1);
+    reverse(c, 0, n - 1);
+    reverse(c, n, c.length - 1);
     reverse(c, 0, c.length - 1);
     return new String(c);
 }
 
 private void reverse(char[] c, int i, int j) {
-    while (i < j) {
-        char t = c[i];
-        c[i] = c[j];
-        c[j] = t;
-        i++;
-        j--;
+    while(i < j) {
+        char t = c[i]; c[i] = c[j]; c[j] = t;
+        i++; j--;
     }
 }
 ```
@@ -2434,7 +2461,7 @@ public double countProbability(int n, int s) {
         flag = 1 - flag;
     }
     int totalNum = (int) Math.pow(6, n);
-    return (double) dp[n - 1][s - 1] / totalNum;
+    return (double) dp[flag][s - 1] / totalNum;
 }
 ```
 
@@ -2447,15 +2474,15 @@ public double countProbability(int n, int s) {
 ## 解题思路
 
 ```java
-public boolean isContinuous(int [] numbers) {
-    if(numbers.length < 5) return false;
-    Arrays.sort(numbers);
+public boolean isContinuous(int[] nums) {
+    if (nums.length < 5) return false;
+    Arrays.sort(nums);
     int cnt = 0;
-    for(int num : numbers) if(num == 0) cnt++;
-    for(int i = cnt; i < numbers.length - 1; i++) {
-        if(numbers[i + 1] == numbers[i]) return false;
-        int interval = numbers[i + 1] - numbers[i] - 1;
-        if(interval > cnt) return false;
+    for (int num : nums) if (num == 0) cnt++;
+    for (int i = cnt; i < nums.length - 1; i++) {
+        if (nums[i + 1] == nums[i]) return false;
+        int interval = nums[i + 1] - nums[i] - 1;
+        if (interval > cnt) return false;
         cnt -= interval;
     }
     return true;
@@ -2570,12 +2597,45 @@ public int StrToInt(String str) {
 
 # 68. 树中两个节点的最低公共祖先
 
-树是二叉查找树的最低公共祖先问题：
+## 二叉查找树
+
+```html
+        _______6______
+       /              \
+   ___2__           ___8__
+  /      \         /      \
+ 0        4       7        9
+         / \
+        3   5
+For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
+```
 
 ```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     if(root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left, p, q);
     if(root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right, p, q);
     return root;
+}
+```
+
+## 普通二叉树
+
+```html
+       _______3______
+      /              \
+  ___5__           ___1__
+ /      \         /      \
+ 6       2       0        8
+        / \
+       7   4
+For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+```
+
+```java
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if (root == null || root == p || root == q) return root;
+    TreeNode left = lowestCommonAncestor(root.left, p, q);
+    TreeNode right = lowestCommonAncestor(root.right, p, q);
+    return left == null ? right : right == null ? left : root;
 }
 ```
