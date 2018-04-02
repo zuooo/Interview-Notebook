@@ -22,6 +22,7 @@
 * [二十一、事务处理](#二十一事务处理)
 * [二十二、字符集](#二十二字符集)
 * [二十三、权限管理](#二十三权限管理)
+* [参考资料](#参考资料)
 <!-- GFM-TOC -->
 
 
@@ -174,7 +175,7 @@ ORDER BY col1 DESC, col2 ASC;
 
 # 九、过滤
 
-不进行过滤的数据非常大，导致通过网络传输了很多多余的数据，从而浪费了网络带宽。因此尽量使用 SQL 语句来过滤不必要的数据，而不是传输所有的数据到客户端中然后由客户端进行过滤。
+不进行过滤的数据非常大，导致通过网络传输了多余的数据，从而浪费了网络带宽。因此尽量使用 SQL 语句来过滤不必要的数据，而不是传输所有的数据到客户端中然后由客户端进行过滤。
 
 ```sql
 SELECT *
@@ -189,7 +190,7 @@ WHERE col IS NULL;
 | = <  >  | 等于 小于 大于 |
 | <> !=  | 不等于  |
 | <= !> | 小于等于 |
-| >= !< | 大于等于 |
+| &gt;= !< | 大于等于 |
 | BETWEEN | 在两个值之间 |
 | IS NULL | 为NULL值 |
 
@@ -205,9 +206,9 @@ WHERE col IS NULL;
 
 通配符也是用在过滤语句中，但它只能用于文本字段。
 
--  **%**  匹配 >=0 个任意字符，类似于 \*；
+-  **%**  匹配 >=0 个任意字符；
 
--  **\_**  匹配 ==1 个任意字符，类似于 \.；
+-  **\_**  匹配 ==1 个任意字符；
 
 -  **[ ]**  可以匹配集合内的字符，例如 [ab] 将匹配字符 a 或者 b。用脱字符 ^ 可以对其进行否定，也就是不匹配集合内的字符。
 
@@ -316,7 +317,7 @@ mysql> SELECT NOW();
 
 AVG() 会忽略 NULL 行。
 
-使用 DISTINCT 可以汇总函数值汇总不同的值。
+使用 DISTINCT 可以让汇总函数值汇总不同的值。
 
 ```sql
 SELECT AVG(DISTINCT col1) AS avg_col
@@ -369,7 +370,7 @@ ORDER BY num;
 
 可以将子查询的结果作为 WHRER 语句的过滤条件：
 
-```
+```sql
 SELECT *
 FROM mytable1
 WHERE col1 IN (SELECT col2
@@ -435,7 +436,7 @@ where department = (
 自连接版本
 
 ```sql
-select name
+select e2.name
 from employee as e1, employee as e2
 where e1.department = e2.department
       and e1.name = "Jim";
@@ -704,8 +705,6 @@ SHOW GRANTS FOR myuser;
 GRANT SELECT, INSERT ON mydatabase.* TO myuser;
 ```
 
-<div align="center"> <img src="../pics//c73aa08e-a987-43c9-92be-adea4a884c25.png"/> </div><br>
-
 账户用 username@host 的形式定义，username@% 使用的是默认主机名。
 
 ## 删除权限
@@ -730,3 +729,6 @@ GRANT 和 REVOKE 可在几个层次上控制访问权限：
 SET PASSWROD FOR myuser = Password('newpassword');
 ```
 
+# 参考资料
+
+- BenForta. SQL 必知必会 [M]. 人民邮电出版社, 2013.

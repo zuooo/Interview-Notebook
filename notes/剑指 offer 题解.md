@@ -1,5 +1,4 @@
 <!-- GFM-TOC -->
-* [前言](#前言)
 * [2. 实现 Singleton](#2-实现-singleton)
 * [3. 数组中重复的数字](#3-数组中重复的数字)
 * [4. 二维数组中的查找](#4-二维数组中的查找)
@@ -77,29 +76,13 @@
 * [66. 构建乘积数组](#66-构建乘积数组)
 * [67. 把字符串转换成整数](#67-把字符串转换成整数)
 * [68. 树中两个节点的最低公共祖先](#68-树中两个节点的最低公共祖先)
+* [参考文献](#参考文献)
 <!-- GFM-TOC -->
 
 
-# 前言
-
-## 变量命名约定
-
-- nums 表示数字数组，array 表示通用数组，matrix 表示矩阵；
-- n 表示数组长度、字符串长度、树节点个数，以及其它具有一维性质的数据结构的元素个数；
-- m, n 表示矩阵的行数和列数；
-- first, last 表示闭区间，在需要作为函数参数时使用：[first, last]；
-- l, h 也表示闭区间，在只作为局部变量时使用：[l, h]；
-- begin, end 表示左闭右开区间：[begin, end)；
-- ret 表示结果相关的变量；
-- dp 表示动态规划保存子问题的数组；
-
-## 复杂度简写说明
-
-O(nlog<sub>n</sub>) + O(n<sup>2</sup>)，第一个指时间复杂度，第二个指空间复杂度。
-
 # 2. 实现 Singleton
 
-> [单例模式](https://github.com/CyC2018/Interview-Notebook/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md#%E5%85%AB%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F)
+> [单例模式](https://github.com/CyC2018/Interview-Notebook/blob/master/notes/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 # 3. 数组中重复的数字
 
@@ -111,7 +94,7 @@ O(nlog<sub>n</sub>) + O(n<sup>2</sup>)，第一个指时间复杂度，第二个
 
 这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素放到第 i 个位置上。
 
-以 (2, 3, 1, 0, 2, 5) 为例，以下代码的运行过程为：
+以 (2, 3, 1, 0, 2, 5) 为例：
 
 ```html
 position-0 : (2,3,1,0,2,5) // 2 <-> 1
@@ -124,7 +107,7 @@ position-2 : (0,1,1,3,2,5) // nums[i] == nums[nums[i]], exit
 
 遍历到位置 2 时，该位置上的数为 1，但是第 1 个位置上已经有一个 1 的值了，因此可以知道 1 重复。
 
-复杂度：O(n) + O(1)
+复杂度：O(N) + O(1)
 
 ```java
 public boolean duplicate(int[] nums, int length, int[] duplication) {
@@ -170,7 +153,7 @@ Given target = 20, return false.
 
 从右上角开始查找。因为矩阵中的一个数，它左边的数都比它小，下边的数都比它大。因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来缩小查找区间。
 
-复杂度：O(m + n) + O(1)
+复杂度：O(M+N) + O(1)
 
 ```java
 public boolean Find(int target, int[][] matrix) {
@@ -200,9 +183,7 @@ public boolean Find(int target, int[][] matrix) {
 
 从后向前遍是为了在改变 P2 所指向的内容时，不会影响到 P1 遍历原来字符串的内容。
 
-复杂度：O(n) + O(1)
-
-<div align="center"> <img src="../pics//35b0caf8-6f34-49db-93ed-d505e9eb3d99.png"/> </div><br>
+复杂度：O(N) + O(1)
 
 ```java
 public String replaceSpace(StringBuffer str) {
@@ -233,6 +214,8 @@ public String replaceSpace(StringBuffer str) {
 ## 题目描述
 
 输入链表的第一个节点，从尾到头反过来打印出每个结点的值。
+
+<div align="center"> <img src="../pics//d99dc9e2-197c-4085-813d-7195da1c6762.png" width="300"/> </div><br>
 
 ## 解题思路
 
@@ -314,19 +297,11 @@ public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
 根据二叉树的前序遍历和中序遍历的结果，重建出该二叉树。
 
 ```html
-For example, given
-
 preorder = [3,9,20,15,7]
 inorder =  [9,3,15,20,7]
-
-Return the following binary tree:
-
-    3
-   / \
-  9  20
-    /  \
-   15   7
 ```
+
+<div align="center"> <img src="../pics//8a4c6ad4-a816-47d1-b93f-7ca4f78ab67a.png" width="250"/> </div><br>
 
 ## 解题思路
 
@@ -364,11 +339,11 @@ private TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int[] in, 
 
 ① 如果一个节点有右子树不为空，那么该节点的下一个节点是右子树的最左节点；
 
-<div align="center"> <img src="../pics//931e112e-97d3-4a47-ac64-a86d70844e58.png" width="200"/> </div><br>
+<div align="center"> <img src="../pics//cb0ed469-27ab-471b-a830-648b279103c8.png" width="250"/> </div><br>
 
 ② 否则，向上找第一个左链接指向的树包含该节点的祖先节点。
 
-<div align="center"> <img src="../pics//350048d6-20f5-4ca9-8452-3957a09ef3af.png" width="200"/> </div><br>
+<div align="center"> <img src="../pics//e143f6da-d114-4ba4-8712-f65299047fa2.png" width="250"/> </div><br>
 
 ```java
 public class TreeLinkNode {
@@ -406,6 +381,8 @@ public TreeLinkNode GetNext(TreeLinkNode pNode) {
 
 in 栈用来处理入栈（push）操作，out 栈用来处理出栈（pop）操作。一个元素进入 in 栈之后，出栈的顺序被反转。当元素要出栈时，需要先进入 out 栈，此时元素出栈顺序再一次被反转，因此出栈顺序就和最开始入栈顺序是相同的，此时先进入的元素先退出，这就是队列的顺序。
 
+<div align="center"> <img src="../pics//5acf7550-86c5-4c5b-b912-8ce70ef9c34e.png" width="400"/> </div><br>
+
 ```java
 Stack<Integer> in = new Stack<Integer>();
 Stack<Integer> out = new Stack<Integer>();
@@ -436,7 +413,7 @@ public int pop() {
 
 如果使用递归求解，那么会重复计算一些子问题。例如，求 f(10) 需要计算 f(9) 和 f(8)，计算 f(9) 需要计算 f(8) 和 f(7)，可以看到 f(8) 被重复计算了。
 
-<div align="center"> <img src="../pics//080f488c-75ef-49a8-a49d-78fa372ad422.png"/> </div><br>
+<div align="center"> <img src="../pics//955af054-8872-4569-82e7-2e10b66bc38e.png" width="300"/> </div><br>
 
 递归方法是将一个问题划分成多个子问题求解，动态规划也是如此，但是动态规划会把子问题的解缓存起来，避免重复求解子问题。
 
@@ -529,7 +506,7 @@ public int RectCover(int n) {
 
 ### 分治
 
-复杂度：O(log<sub>n</sub>) + O(1)，其实空间复杂度不止 O(1)，因为分治使用了递归栈，用到了额外的空间，如果对空间有要求就不能用这种方法。
+复杂度：O(logN) + O(1)，其实空间复杂度不止 O(1)，因为分治使用了递归栈，用到了额外的空间，如果对空间有要求就不能用这种方法。
 
 ```java
 public int minNumberInRotateArray(int[] nums) {
@@ -546,7 +523,7 @@ private int minNumberInRotateArray(int[] nums, int first, int last) {
 
 ### 二分查找
 
-复杂度：O(log<sub>n</sub>) + O(1)
+复杂度：O(logN) + O(1)
 
 ```java
 public int minNumberInRotateArray(int[] nums) {
@@ -566,7 +543,11 @@ public int minNumberInRotateArray(int[] nums) {
 
 ## 题目描述
 
-请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。例如 a b c e s f c s a d e e 矩阵中包含一条字符串 "bcced" 的路径，但是矩阵中不包含 "abcb" 路径，因为字符串的第一个字符 b 占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。
+
+例如下面的矩阵包含了一条 bfce 路径。
+
+<div align="center"> <img src="../pics//e31abb94-9201-4e06-9902-61101b92f475.png" width="300"/> </div><br>
 
 ## 解题思路
 
@@ -820,13 +801,13 @@ private void printNumber(char[] number) {
 
 ① 如果该节点不是尾节点，那么可以直接将下一个节点的值赋给该节点，令该节点指向下下个节点，然后删除下一个节点，时间复杂度为 O(1)。
 
-<div align="center"> <img src="../pics//72f9bc11-06a9-40b4-8939-14f72e5cb4c3.png"/> </div><br>
+<div align="center"> <img src="../pics//41392d76-dd1d-4712-85d9-e8bb46b04a2d.png" width="600"/> </div><br>
 
 ② 否则，就需要先遍历链表，找到节点的前一个节点，然后让前一个节点指向 null，时间复杂度为 O(N)。
 
-<div align="center"> <img src="../pics//2a398239-ee47-4ea1-b2d8-0ced638839ef.png"/> </div><br>
+<div align="center"> <img src="../pics//db4921d4-184b-48ba-a3cf-1d1141e3ba2d.png" width="600"/> </div><br>
 
-综上，如果进行 N 次操作，那么大约需要操作节点的次数为 N-1+N=2N-1，其中 N-1 表示 N-1 个不是尾节点的每个节点以 O(1) 的时间复杂度操作节点的总次数，N 表示 1 个为节点以 O(n) 的时间复杂度操作节点的总次数。(2N-1)/N \~ 2，因此该算法的平均时间复杂度为 O(1)。
+综上，如果进行 N 次操作，那么大约需要操作节点的次数为 N-1+N=2N-1，其中 N-1 表示 N-1 个不是尾节点的每个节点以 O(1) 的时间复杂度操作节点的总次数，N 表示 1 个尾节点以 O(N) 的时间复杂度操作节点的总次数。(2N-1)/N \~ 2，因此该算法的平均时间复杂度为 O(1)。
 
 ```java
 public ListNode deleteNode(ListNode head, ListNode tobeDelete) {
@@ -849,10 +830,7 @@ public ListNode deleteNode(ListNode head, ListNode tobeDelete) {
 
 ## 题目描述
 
-```html
-Input : 1->2->3->3->4->4->5
-Output : 1->2->5
-```
+<div align="center"> <img src="../pics//8433fbb2-c35c-45ef-831d-e3ca42aebd51.png" width="500"/> </div><br>
 
 ## 解题描述
 
@@ -878,17 +856,17 @@ public ListNode deleteDuplication(ListNode pHead) {
 
 ## 解题思路
 
-应该注意到，'.' 是用来代替一个任意字符，而 '\*' 是用来重复前面的字符。这两个的作用不同，不能把 '.' 的作用和 '\*' 进行类比，从而把它当成重复前面字符一次。
+应该注意到，'.' 是用来当做一个任意字符，而 '\*' 是用来重复前面的字符。这两个的作用不同，不能把 '.' 的作用和 '\*' 进行类比，从而把它当成重复前面字符一次。
 
 ```html
 p.charAt(j) == s.charAt(i)  :  dp[i][j] = dp[i-1][j-1];
 p.charAt(j) == '.'          :  dp[i][j] = dp[i-1][j-1];
 p.charAt(j) == '*'          :
-   p.charAt(j-1) != s.charAt(i) : dp[i][j] = dp[i][j-2]  // in this case, a* only counts as empty
+   p.charAt(j-1) != s.charAt(i) : dp[i][j] = dp[i][j-2]  //a* only counts as empty
    p.charAt(j-1) == s.charAt(i) or p.charAt(i-1) == '.':
-            dp[i][j] = dp[i-1][j]   // in this case, a* counts as multiple a
-         or dp[i][j] = dp[i][j-1]   // in this case, a* counts as single a
-         or dp[i][j] = dp[i][j-2]   // in this case, a* counts as empty
+            dp[i][j] = dp[i-1][j]   // a* counts as multiple a
+         or dp[i][j] = dp[i][j-1]   // a* counts as single a
+         or dp[i][j] = dp[i][j-2]   // a* counts as empty
 ```
 
 ```java
@@ -940,7 +918,7 @@ public boolean isNumeric(char[] str) {
 
 ## 解题思路
 
-复杂度：O(n<sup>2</sup>) + O(1)
+复杂度：O(N<sup>2</sup>) + O(1)
 
 ```java
 public void reOrderArray(int[] nums) {
@@ -960,7 +938,7 @@ public void reOrderArray(int[] nums) {
 }
 ```
 
-复杂度：O(n) + O(n)
+复杂度：O(N) + O(N)
 
 ```java
 public void reOrderArray(int[] nums) {
@@ -983,7 +961,7 @@ public void reOrderArray(int[] nums) {
 
 ## 解题思路
 
-<div align="center"> <img src="../pics//40d96c0d-156f-4eee-a183-2d597344f1cd.png"/> </div><br>
+<div align="center"> <img src="../pics//207c1801-2335-4b1b-b65c-126a0ba966cb.png" width="500"/> </div><br>
 
 ```java
 public ListNode FindKthToTail(ListNode head, int k) {
@@ -1008,7 +986,7 @@ public ListNode FindKthToTail(ListNode head, int k) {
 
 在相遇点，slow 要到环的入口点还需要移动 z 个节点，如果让 fast 重新从头开始移动，并且速度变为每次移动一个节点，那么它到环入口点还需要移动 x 个节点。在上面已经推导出 x=z，因此 fast 和 slow 将在环入口点相遇。
 
-<div align="center"> <img src="../pics//e7d7dc0d-fc22-4f95-8768-b8a216168792.jpg"/> </div><br>
+<div align="center"> <img src="../pics//71363383-2d06-4c63-8b72-c01c2186707d.png" width="600"/> </div><br>
 
 ```java
 public ListNode EntryNodeOfLoop(ListNode pHead) {
@@ -1066,7 +1044,7 @@ public ListNode ReverseList(ListNode head) {
 
 ## 题目描述
 
-<div align="center"> <img src="../pics//79f28233-f5cb-492a-9dc4-696cb714d434.png"/> </div><br>
+<div align="center"> <img src="../pics//43f2cafa-3568-4a89-a895-4725666b94a6.png" width="500"/> </div><br>
 
 ## 解题思路
 
@@ -1112,7 +1090,7 @@ public ListNode Merge(ListNode list1, ListNode list2) {
 
 ## 题目描述
 
-<div align="center"> <img src="../pics//26223561-eea4-463c-8ddb-3bb456c76267.png"/> </div><br>
+<div align="center"> <img src="../pics//4583e24f-424b-4d50-8a14-2c38a1827d4a.png" width="500"/> </div><br>
 
 ## 解题思路
 
@@ -1135,7 +1113,7 @@ private boolean isSubtree(TreeNode root1, TreeNode root2) {
 
 ## 题目描述
 
-<div align="center"> <img src="../pics//7cfcfdf7-63a7-4111-a677-2eca29fbcf24.png"/> </div><br>
+<div align="center"> <img src="../pics//a2d13178-f1ef-4811-a240-1fe95b55b1eb.png" width="300"/> </div><br>
 
 ## 解题思路
 
@@ -1158,13 +1136,7 @@ private void swap(TreeNode root) {
 
 ## 题目描述
 
-```html
-    1
-   / \
-  2   2
- / \ / \
-3  4 4  3
-```
+<div align="center"> <img src="../pics//f42443e0-208d-41ea-be44-c7fd97d2e3bf.png" width="300"/> </div><br>
 
 ## 解题思路
 
@@ -1188,9 +1160,7 @@ boolean isSymmetrical(TreeNode t1, TreeNode t2) {
 
 下图的矩阵顺时针打印结果为：1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10
 
-<div align="center"> <img src="../pics//8615d9f7-bd1d-4240-8bb4-02b941d54a6f.png"/> </div><br>
-
-<div align="center"> <img src="../pics//6afa9796-af1a-4495-9f02-63349ab68a19.png"/> </div><br>
+<div align="center"> <img src="../pics//0f373947-c68f-45b4-a59e-086154745ac5.png" width="300"/> </div><br>
 
 ## 解题思路
 
@@ -1251,6 +1221,8 @@ public int min() {
 
 ## 解题思路
 
+使用一个栈来模拟压入弹出操作。
+
 ```java
 public boolean IsPopOrder(int[] pushA, int[] popA) {
     int n = pushA.length;
@@ -1272,9 +1244,9 @@ public boolean IsPopOrder(int[] pushA, int[] popA) {
 
 从上往下打印出二叉树的每个节点，同层节点从左至右打印。
 
-例如，以下二叉树层次遍历的结果为 8, 6, 10, 5, 7, 9, 11
+例如，以下二叉树层次遍历的结果为：1,2,3,4,5,6,7
 
-<div align="center"> <img src="../pics//c8cdfa3d-d610-4731-9d89-564252378e7d.png"/> </div><br>
+<div align="center"> <img src="../pics//348bc2db-582e-4aca-9f88-38c40e9a0e69.png" width="250"/> </div><br>
 
 ## 解题思路
 
@@ -1368,9 +1340,9 @@ public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
 
 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。
 
-例如，下图中后序遍历序列 5, 7, 6, 9, 11, 10, 8 所对应的二叉搜索树。
+例如，下图是后序遍历序列 3,1,2 所对应的二叉搜索树。
 
-<div align="center"> <img src="../pics//b5af9ee6-97e6-446b-9551-6dfe96770d1a.png"/> </div><br>
+<div align="center"> <img src="../pics//836a4eaf-4798-4e48-b52a-a3dab9435ace.png" width="150"/> </div><br>
 
 ## 解题思路
 
@@ -1400,7 +1372,7 @@ private boolean verify(int[] sequence, int first, int last) {
 
 下图的二叉树有两条和为 22 的路径：10, 5, 7 和 10, 12
 
-<div align="center"> <img src="../pics//a1ced733-02f5-4091-8f5a-ab9b4e5a3525.png"/> </div><br>
+<div align="center"> <img src="../pics//f5477abd-c246-4851-89ab-6b1cde2549b1.png" width="200"/> </div><br>
 
 ## 解题思路
 
@@ -1432,21 +1404,21 @@ private void dfs(TreeNode node, int target, ArrayList<Integer> path) {
 
 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的 head。
 
-<div align="center"> <img src="../pics//4f67aa74-5bf5-4ea4-9a6e-2e07d8f5fa86.png"/> </div><br>
+<div align="center"> <img src="../pics//a01d1516-8168-461a-a24b-620b9cfc40f4.png" width="300"/> </div><br>
 
 ## 解题思路
 
 第一步，在每个节点的后面插入复制的节点。
 
-<div align="center"> <img src="../pics//52726d32-e97a-49dd-8419-04d30a9f9050.png"/> </div><br>
+<div align="center"> <img src="../pics//2e6c72f5-3b8e-4e32-b87b-9491322628fe.png" width="600"/> </div><br>
 
 第二步，对复制节点的 random 链接进行赋值。
 
-<div align="center"> <img src="../pics//c5409a64-81fc-48c1-9790-ffa0afdb7bf5.png"/> </div><br>
+<div align="center"> <img src="../pics//323ffd6c-8b54-4f3e-b361-555a6c8bf218.png" width="600"/> </div><br>
 
 第三步，拆分。
 
-<div align="center"> <img src="../pics//15e1edf0-8908-4815-af5e-a74e456da23b.png"/> </div><br>
+<div align="center"> <img src="../pics//8f3b9519-d705-48fe-87ad-2e4052fc81d2.png" width="600"/> </div><br>
 
 ```java
 public RandomListNode Clone(RandomListNode pHead) {
@@ -1488,7 +1460,7 @@ public RandomListNode Clone(RandomListNode pHead) {
 
 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
 
-<div align="center"> <img src="../pics//9cd97f41-fd9c-405c-aca1-9c82d24e20dc.png"/> </div><br>
+<div align="center"> <img src="../pics//79b12431-6d9d-4a7d-985b-1b79bc5bf5fb.png" width="400"/> </div><br>
 
 ## 解题思路
 
@@ -1528,7 +1500,7 @@ public class Solution {
 
     public String Serialize(TreeNode root) {
         if (root == null) return "#";
-        return root.val + " " + Serialize(root.left) + " " + Serialize(root.right);
+        return root.val + " " + Serialize(root.left) + " " + Serialize(root.right); 
     }
 
     public TreeNode Deserialize(String str) {
@@ -1591,7 +1563,7 @@ private void backtracking(char[] chars, boolean[] hasUsed, StringBuffer s) {
 
 ## 解题思路
 
-多数投票问题，可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题，使得时间复杂度为 O(n)。
+多数投票问题，可以利用 Boyer-Moore Majority Vote Algorithm 来解决这个问题，使得时间复杂度为 O(N)。
 
 使用 cnt 来统计一个元素出现的次数，当遍历到的元素和统计元素不相等时，令 cnt--。如果前面查找了 i 个元素，且 cnt == 0 ，说明前 i 个元素没有 majority，或者有 majority，但是出现的次数少于 i / 2 ，因为如果多于 i / 2 的话 cnt 就一定不会为 0 。此时剩下的 n - i 个元素中，majority 的数目依然多于 (n - i) / 2，因此继续查找就能找出 majority。
 
@@ -2012,7 +1984,7 @@ public int FirstNotRepeatingChar(String str) {
 }
 ```
 
-以上的空间复杂度还不是最优的。考虑到只需要找到只出现一次的字符，那么我们只需要统计的次数信息只有 0,1,更大，那么使用两个比特位就能存储这些信息。
+以上实现的空间复杂度还不是最优的。考虑到只需要找到只出现一次的字符，那么我们只需要统计的次数信息只有 0,1,更大，那么使用两个比特位就能存储这些信息。
 
 ```java
 public int FirstNotRepeatingChar(String str) {
@@ -2078,13 +2050,7 @@ private void merge(int[] nums, int first, int mid, int last) {
 
 ## 题目描述
 
-```html
-A:          a1 → a2
-                  ↘
-                    c1 → c2 → c3
-                  ↗
-B:    b1 → b2 → b3
-```
+<div align="center"> <img src="../pics//8f6f9dc9-9ecd-47c8-b50e-2814f0219056.png" width="500"/> </div><br>
 
 ## 解题思路
 
@@ -2117,7 +2083,10 @@ Output:
 
 ## 解题思路
 
-可以用二分查找找出数字在数组的最左端和最右端。
+可以用二分查找找出数字在数组的最左端和最右端，找最左端和最右端在方法实现上的区别主要在于对 nums[m] == K 的处理：
+
+- 找最左端令 h = m - 1
+- 找最右端令 l = m + 1
 
 ```java
 public int GetNumberOfK(int[] nums, int K) {
@@ -2180,6 +2149,8 @@ private void inOrder(TreeNode root, int k) {
 
 从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
 
+<div align="center"> <img src="../pics//b29f8971-9cb8-480d-b986-0e60c2ece069.png" width="350"/> </div><br>
+
 ## 解题思路
 
 ```java
@@ -2193,15 +2164,9 @@ public int TreeDepth(TreeNode root) {
 
 ## 题目描述
 
-```html
-    3
-   / \
-  9  20
-    /  \
-   15   7
-```
-
 平衡二叉树左右子树高度差不超过 1。
+
+<div align="center"> <img src="../pics//e026c24d-00fa-4e7c-97a8-95a98cdc383a.png" width="300"/> </div><br>
 
 ## 解题思路
 
@@ -2357,7 +2322,7 @@ private void reverse(char[] c, int i, int j) {
 ## 解题思路
 
 ```java
-public String LeftRotateString(String str,int n) {
+public String LeftRotateString(String str, int n) {
     if(str.length() == 0) return "";
     char[] c = str.toCharArray();
     reverse(c, 0, n - 1);
@@ -2409,7 +2374,7 @@ public ArrayList<Integer> maxInWindows(int[] num, int size) {
 
 ### 动态规划解法
 
-空间复杂度：O(n<sup>2</sup>)
+空间复杂度：O(N<sup>2</sup>)
 
 ```java
 private static int face = 6;
@@ -2437,7 +2402,7 @@ public double countProbability(int n, int s) {
 
 ### 动态规划解法 + 旋转数组
 
-空间复杂度：O(n)
+空间复杂度：O(N)
 
 ```java
 private static int face = 6;
@@ -2493,11 +2458,11 @@ public boolean isContinuous(int[] nums) {
 
 ## 题目描述
 
-让小朋友们围成一个大圈。然后 , 他随机指定一个数 m, 让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌 , 然后可以在礼品箱中任意的挑选礼物 , 并且不再回到圈中 , 从他的下一个小朋友开始 , 继续 0...m-1 报数 .... 这样下去 .... 直到剩下最后一个小朋友 , 可以不用表演。
+让小朋友们围成一个大圈。然后，他随机指定一个数 m，让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌，然后可以在礼品箱中任意的挑选礼物，并且不再回到圈中，从他的下一个小朋友开始，继续 0...m-1 报数 .... 这样下去 .... 直到剩下最后一个小朋友，可以不用表演。
 
 ## 解题思路
 
-约瑟夫环
+约瑟夫环，圆圈长度为 n 的解可以看成长度为 n-1 的解再加上报数的长度 m。因为是圆圈，所以最后需要对 n 取余。
 
 ```java
 public int LastRemaining_Solution(int n, int m) {
@@ -2514,6 +2479,8 @@ public int LastRemaining_Solution(int n, int m) {
 可以有一次买入和一次卖出，买入必须在前。求最大收益。
 
 ## 解题思路
+
+使用贪心策略，假设第 i 轮进行卖出操作，买入操作价格应该是 i 之前并且价格最低。
 
 ```java
 public int maxProfit(int[] prices) {
@@ -2547,7 +2514,11 @@ public int Sum_Solution(int n) {
 
 # 65. 不用加减乘除做加法
 
-a ^ b 表示没有考虑进位的情况下两数的和，(a & b) << 1 就是进位。递归会终止的原因是 (a & b) << 1 最右边会多一个 0，那么继续递归，进位最右边的 0 会慢慢增多，最后进位会变为 0，递归终止。
+## 解题思路
+
+a ^ b 表示没有考虑进位的情况下两数的和，(a & b) << 1 就是进位。
+
+递归会终止的原因是 (a & b) << 1 最右边会多一个 0，那么继续递归，进位最右边的 0 会慢慢增多，最后进位会变为 0，递归终止。
 
 ```java
 public int Add(int num1, int num2) {
@@ -2580,6 +2551,8 @@ public int[] multiply(int[] A) {
 
 # 67. 把字符串转换成整数
 
+## 解题思路
+
 ```java
 public int StrToInt(String str) {
     if (str.length() == 0) return 0;
@@ -2588,7 +2561,7 @@ public int StrToInt(String str) {
     int ret = 0;
     for (int i = 0; i < chars.length; i++) {
         if (i == 0 && (chars[i] == '+' || chars[i] == '-')) continue;
-        if (chars[i] < '0' || chars[i] > '9') return 0;
+        if (chars[i] < '0' || chars[i] > '9') return 0; // 非法输入
         ret = ret * 10 + (chars[i] - '0');
     }
     return isNegative ? -ret : ret;
@@ -2597,18 +2570,13 @@ public int StrToInt(String str) {
 
 # 68. 树中两个节点的最低公共祖先
 
-## 二叉查找树
+## 解题思路
 
-```html
-        _______6______
-       /              \
-   ___2__           ___8__
-  /      \         /      \
- 0        4       7        9
-         / \
-        3   5
-For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
-```
+### 二叉查找树
+
+<div align="center"> <img src="../pics//293d2af9-de1d-403e-bed0-85d029383528.png" width="300"/> </div><br>
+
+二叉查找树中，两个节点 p, q 的公共祖先 root 满足 p.val <= root.val && root.val <= q.val，只要找到满足这个条件的最低层节点即可。换句话说，应该先考虑子树的解而不是根节点的解，二叉树的后序遍历操作满足这个特性。在本题中我们可以利用后序遍历的特性，先在左右子树中查找解，最后再考虑根节点的解。
 
 ```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -2618,18 +2586,11 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 }
 ```
 
-## 普通二叉树
+### 普通二叉树
 
-```html
-       _______3______
-      /              \
-  ___5__           ___1__
- /      \         /      \
- 6       2       0        8
-        / \
-       7   4
-For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
-```
+<div align="center"> <img src="../pics//37a72755-4890-4b42-9eab-b0084e0c54d9.png" width="300"/> </div><br>
+
+在左右子树中查找两个节点的最低公共祖先，如果在其中一颗子树中查找到，那么就返回这个解，否则可以认为根节点就是最低公共祖先。
 
 ```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -2639,3 +2600,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     return left == null ? right : right == null ? left : root;
 }
 ```
+
+# 参考文献
+
+- 何海涛. 剑指 Offer[M]. 电子工业出版社, 2012.
